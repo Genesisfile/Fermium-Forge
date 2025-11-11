@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fermium Forge</title>
+    
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "@google/genai": "https://esm.sh/@google/genai@1.29.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@6.24.1?external=react,react-dom",
+    "marked": "https://cdn.jsdelivr.net/npm/marked@13.0.2/lib/marked.esm.js"
+  }
+}
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#6A63F5',
+              'primary-focus': '#5a53e2',
+              accent: '#34D399',
+              'accent-focus': '#2cb984',
+              background: '#0A0E14',
+              'surface': '#101620',
+              'surface-light': '#1b222f',
+              'text-primary': '#E0E0E0',
+              'text-secondary': '#A0A0E0',
+              'border-color': '#2a3140',
+            },
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+  <body class="bg-background text-text-primary">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
