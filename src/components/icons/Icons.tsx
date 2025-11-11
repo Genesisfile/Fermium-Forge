@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 
 const IconWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -48,3 +47,6 @@ export const ClipboardCheckIcon = () => <IconWrapper><path strokeLinecap="round"
 export const OrchestrateIcon = () => <IconWrapper><path d="M10 20l4-16m4 4l4 4-4 4M6 4l-4 4 4 4" /><path d="M12 8V4M12 20v-4M4 12h4M20 12h-4" strokeLinecap="round" strokeLinejoin="round" /></IconWrapper>; // NEW: Orchestrate Icon
 export const StrategyPlanIcon = () => <IconWrapper><path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-5m3 5v-1m3 1v-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></IconWrapper>; // NEW: Strategy Plan Icon
 export const ShieldIcon = () => <IconWrapper><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944L12 22l9-1.056a12.02 12.02 0 00-1.382-9.024z" /></IconWrapper>;
+export const PlusCircleIcon = () => <IconWrapper><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m-3-3h6m-9 0a9 9 0 1118 0 9 9 0 01-18 0z" /></IconWrapper>;
+export const PlayIcon = () => <IconWrapper><path strokeLinecap="round" strokeLinejoin="round" d="M5 5v14l14-7z" /></IconWrapper>;
+export const PauseIcon = () => <IconWrapper><path strokeLinecap="round" strokeLinejoin="round" d="M8 5v14M16 5v14" /></IconWrapper>;
