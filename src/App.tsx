@@ -1,4 +1,4 @@
-import React, { useContext, Component, ErrorInfo } from 'react';
+import React, { useContext, ErrorInfo } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Toast from './components/Toast';
@@ -53,8 +53,8 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-// FIX: Explicitly import Component and ErrorInfo from React and use them in the ErrorBoundary class
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+// FIX: Ensure ErrorBoundary explicitly extends React.Component to resolve TypeScript inference issues with 'props'.
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState;
 
   constructor(props: ErrorBoundaryProps) {
