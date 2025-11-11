@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Component, ErrorInfo } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Toast from './components/Toast';
@@ -24,7 +24,7 @@ import CampaignCommandPage from './pages/CampaignCommandPage';
 import CampaignDetailPage from './pages/CampaignDetailPage'; // New Import
 import SystemPage from './pages/SystemPage';
 import Health from './pages/system/Health';
-import SystemIntegrity from '../pages/SystemIntegrity'; // FIX: Updated to import from the root proxy pages/SystemIntegrity.tsx
+import SystemIntegrity from './pages/system/SystemIntegrity';
 import Diagnostics from './pages/system/Diagnostics';
 import Integrations from './pages/system/Integrations';
 import Account from './pages/system/Account';
@@ -53,8 +53,8 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-// FIX: Explicitly import Component and ErrorInfo from React
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+// FIX: Explicitly import Component and ErrorInfo from React and use them in the ErrorBoundary class
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState;
 
   constructor(props: ErrorBoundaryProps) {
@@ -66,7 +66,8 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  // FIX: Use the directly imported ErrorInfo type
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
   }
 
@@ -90,26 +91,23 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 const App: React.FC = () => {
   const { hasApiKey, isApiKeyLoading } = useContext(ApiKeyContext);
 
-  if (isApiKeyLoading) {
-    return (
-      <div className="h-screen w-screen flex items-center justify-center bg-background">
-        <LoadingSpinner text="Initializing..." size={12} />
-        {/*
-          NOTE: Removed the closing tag for LoadingSpinner from the original file,
-          as it was placed incorrectly, potentially causing other JSX parsing issues.
-          Assuming the original intent was for the LoadingSpinner to self-close.
-        */}
-        <Routes>
-          <Route path="/" element={<ApiKeyGate />} />
-        </Routes>
-      </div>
-    );
-  }
-
   return (
     <BrowserRouter>
+      {/* FIX: Ensure ErrorBoundary wraps all possible rendering paths, including the loading state */}
       <ErrorBoundary>
-        {!hasApiKey ? (
+        {isApiKeyLoading ? (
+          <div className="h-screen w-screen flex items-center justify-center bg-background">
+            <LoadingSpinner text="Initializing..." size={12} />
+            {/*
+              NOTE: Removed the closing tag for LoadingSpinner from the original file,
+              as it was placed incorrectly, potentially causing other JSX parsing issues.
+              Assuming the original intent was for the LoadingSpinner to self-close.
+            */}
+            <Routes>
+              <Route path="/" element={<ApiKeyGate />} />
+            </Routes>
+          </div>
+        ) : !hasApiKey ? (
           <ApiKeyGate />
         ) : (
           <Routes>
