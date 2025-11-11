@@ -1,5 +1,6 @@
-import React, { useContext, ErrorInfo } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import type { ErrorInfo } from 'react'; // FIX: Correctly import ErrorInfo as a type
 import Navbar from './components/Navbar';
 import Toast from './components/Toast';
 import LoadingSpinner from './components/LoadingSpinner';
