@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Fermium Forge Autonomous Core",
+  "version": "1.0",
+  "description": "Fermium Forge's fully autonomous, client-side operational platform. Create, evolve, certify, and export personalized AI agents entirely within your browser, independent of external APIs.",
+  "icons": {
+    "16": "icons/logo-16.png",
+    "48": "icons/logo-48.png",
+    "128": "icons/logo-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/logo-16.png",
+      "24": "icons/logo-24.png",
+      "32": "icons/logo-32.png"
+    },
+    "default_title": "Open Fermium Forge",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' https://aistudiocdn.com https://cdn.jsdelivr.net; object-src 'self'; style-src 'self' 'unsafe-inline';"
+  }
+}

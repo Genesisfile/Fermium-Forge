@@ -1,0 +1,175 @@
+
+.unified-studio-grid-main {
+    display: grid;
+    grid-template-columns: 1fr 350px; /* Main content and a sidebar for vitals/labs */
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.unified-studio-full-width {
+    grid-template-columns: 1fr; /* Full width for forging view */
+}
+
+.chat-panel-container,
+.agent-vitals-container,
+.quick-experiments-container {
+    height: 100%;
+    min-height: 0;
+}
+
+@media (max-width: 1024px) {
+    .unified-studio-grid-main {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 2rem;
+    }
+    .chat-panel-container {
+      min-height: 70vh;
+    }
+     .agent-vitals-container {
+        min-height: 60vh;
+    }
+}
+
+/* Ensure child flex containers can shrink and grow correctly */
+.chat-panel-container, .agent-vitals-container, .quick-experiments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-panel-container > *, .agent-vitals-container > *, .quick-experiments-container > * {
+    flex-grow: 0;
+}
+.chat-panel-container > .flex-grow, .quick-experiments-container > .flex-grow {
+    flex-grow: 1;
+}
+
+/* --- Chat Textarea Styles --- */
+.chat-textarea {
+    resize: none;
+    overflow-y: auto;
+    max-height: 150px; /* Limit max height to prevent layout breaking */
+    transition: height 0.1s ease-out;
+}
+.chat-textarea::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-textarea::-webkit-scrollbar-thumb {
+    background-color: #2a3140;
+    border-radius: 3px;
+}
+.chat-textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* --- Markdown Content Styles --- */
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    font-weight: 600;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    line-height: 1.25;
+    color: #E0E0E0;
+    word-break: break-word; /* Ensure headers wrap */
+}
+
+.markdown-content h3 { font-size: 1.25em; }
+.markdown-content h4 { font-size: 1.1em; }
+
+.markdown-content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+    word-break: break-word; /* Ensure paragraphs wrap */
+}
+.markdown-content p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+    word-break: break-word; /* Ensure lists wrap */
+}
+
+.markdown-content li {
+    margin-bottom: 0.4em;
+    word-break: break-word; /* Ensure list items wrap */
+}
+
+.markdown-content li::marker {
+    color: #A0A0A0;
+}
+
+.markdown-content ul {
+    list-style-type: disc;
+}
+
+.markdown-content ol {
+    list-style-type: decimal;
+}
+
+.markdown-content code {
+    background-color: #0A0E14;
+    color: #E0E0E0;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+    font-family: monospace;
+    border: 1px solid #2a3140;
+    word-break: break-word; /* Ensure inline code wraps */
+}
+
+.markdown-content pre {
+    background-color: #0A0E14;
+    padding: 1em;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid #2a3140;
+    line-height: 1.45;
+}
+
+.markdown-content pre code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    background-color: transparent;
+    border: none;
+    word-break: normal; /* Preformatted code blocks should maintain their original breaks */
+}
+
+.markdown-content hr {
+    border-color: #2a3140;
+    margin: 1.5em 0;
+    border-top-width: 1px;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #2a3140;
+  padding-left: 1em;
+  color: #A0A0A0;
+  margin: 1.5em 0;
+  font-style: italic;
+  word-break: break-word; /* Ensure blockquotes wrap */
+}
+
+.markdown-content a {
+    color: #6A63F5;
+    text-decoration: underline;
+    word-break: break-word; /* Ensure links wrap */
+}
+
+.markdown-content a:hover {
+    color: #5a53e2;
+}
+
+.markdown-content strong {
+    font-weight: 600;
+}

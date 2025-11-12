@@ -1,4 +1,3 @@
-
 import type { AgentStatus } from '../types';
 
 /**
@@ -42,26 +41,31 @@ export const fileToBase64 = (file: File): Promise<string> => {
  * @returns {string} A string of Tailwind CSS classes for background and text color.
  */
 export const getStatusColorClasses = (status: AgentStatus) => {
-    switch (status) {
-        case 'Optimized':
-             return 'bg-yellow-400/20 text-yellow-300';
-        case 'Certified':
-        case 'Live':
-            return 'bg-green-500/20 text-green-400';
-        case 'ExecutingStrategy':
-        case 'Evolving':
-        case 'Certifying':
-        case 'Deploying':
-        case 'Optimizing':
-        case 'ReEvolving':
-        case 'AutoEvolving':
-            return 'bg-blue-500/20 text-blue-400';
-        case 'AwaitingReEvolution':
-            return 'bg-purple-500/20 text-purple-400';
-        case 'Failed':
-            return 'bg-red-500/20 text-red-400';
-        case 'Conception':
-        default:
-            return 'bg-gray-500/20 text-gray-400';
-    }
+  switch (status) {
+    case 'Optimized':
+      return 'bg-yellow-400/20 text-yellow-300';
+    case 'Certified':
+    case 'Live':
+      return 'bg-green-500/20 text-green-400';
+    case 'ExecutingStrategy':
+    case 'Evolving':
+    case 'Certifying':
+    case 'Deploying':
+    case 'Optimizing':
+    case 'ReEvolving':
+    case 'AutoEvolving':
+      return 'bg-blue-500/20 text-blue-400';
+    case 'AwaitingReEvolution':
+      return 'bg-purple-500/20 text-purple-400';
+    case 'CompletedTask': // NEW
+      return 'bg-orange-500/20 text-orange-400';
+    case 'Failed':
+      return 'bg-red-500/20 text-red-400';
+    // Fix: Added 'EstablishAlignment' status styling
+    case 'EstablishAlignment':
+      return 'bg-indigo-500/20 text-indigo-400';
+    case 'Conception':
+    default:
+      return 'bg-gray-500/20 text-gray-400';
+  }
 };

@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 
 type ToastType = 'success' | 'error' | 'info';
@@ -19,25 +18,24 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export const ToastProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [toast, setToast] = useState<ToastState>({ message: '', type: 'info', visible: false });
-  // FIX: Use ReturnType<typeof setTimeout> for browser compatibility instead of NodeJS.Timeout
-  const [timeoutId, setTimeoutId] = useState<ReturnType<typeof setTimeout> | null>(null);
+  const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
   const hideToast = useCallback(() => {
     setToast(prev => ({ ...prev, visible: false }));
      if (timeoutId) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutId as number); // Explicitly cast to number
       setTimeoutId(null);
     }
   }, [timeoutId]);
 
   const showToast = useCallback((message: string, type: ToastType = 'info', duration: number = 3000) => {
     if (timeoutId) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeoutId as number); // Explicitly cast to number
     }
-    setToast({ message, type, visible: true });
-    const newTimeoutId = setTimeout(() => {
+    const newTimeoutId = window.setTimeout(() => {
       hideToast();
     }, duration);
+    setToast({ message, type, visible: true });
     setTimeoutId(newTimeoutId);
   }, [hideToast, timeoutId]);
 
