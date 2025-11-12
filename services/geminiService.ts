@@ -153,7 +153,7 @@ export const getAiAssistedDesign = async (
   }
 
   // General recommendations based on concept
-  if (lowerConcept.includes('truth synthesis') || lowerConcept.includes('undeniable certainties') || lowerConcept.includes('verify scientific consensus') || lowerConcept.includes('business insights')) {
+  if (lowerConcept.includes('truth synthesis') || lowerConcept.includes('undeniable certainties') || lowerConcept.includes('business insights')) {
       recommendedEngineIds = Array.from(new Set([...recommendedEngineIds, 'engine_solution_finder', 'engine_data_stream', CAPABILITY_PREFIX + 'googleSearch']));
       recommendedStrategyId = 'strat_data_driven';
       recommendRealtimeFeedback = true;
